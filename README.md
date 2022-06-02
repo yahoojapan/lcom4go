@@ -7,6 +7,18 @@ $ go install --ldflags "-s -w" --trimpath github.com/yahoojapan/lcom4go/cmd/lcom
 ```
 
 # Usage
+### Directory use installed binary (recommended)
+
+```
+$  $(go env GOPATH)/bin/lcom4 ./...
+...
+
+$  $(go env GOPATH)/bin/lcom4 net/http
+...
+```
+
+### Through the go vet
+
 ```
 $  go vet -vettool=$(go env GOPATH)/bin/lcom4 ./...
 ...
