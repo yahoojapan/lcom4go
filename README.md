@@ -1,12 +1,17 @@
 # LCOM4go
 LCOM4go is a tool to compute LCOM4, Lack of Cohesion of Methods metrics ver.4, for golang projects.
 
+# Install
+```
+$ go install github.com/yahoojapan/lcom4go/cmd/lcom4@latest
+```
+
 # Usage
 ```
-$ ./lcom4go ./...
+$  go vet -vettool=$(go env GOPATH)/bin/lcom4 ./...
 ...
 
-$ ./lcom4go net/http
+$  go vet -vettool=$(go env GOPATH)/bin/lcom4 net/http
 ...
 ```
 
