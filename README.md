@@ -3,7 +3,7 @@ LCOM4go is a tool to compute LCOM4, Lack of Cohesion of Methods metrics ver.4, f
 
 # Install
 ```
-$ go install github.com/yahoojapan/lcom4go/cmd/lcom4@latest
+$ go install --ldflags "-s -w" --trimpath github.com/yahoojapan/lcom4go/cmd/lcom4@latest
 ```
 
 # Usage
