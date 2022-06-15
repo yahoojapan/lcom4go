@@ -5,6 +5,7 @@ import (
 	"go/ast"
 	"go/token"
 	"go/types"
+	"sort"
 	"strings"
 
 	"golang.org/x/tools/go/analysis"
@@ -22,6 +23,12 @@ var Analyzer = &analysis.Analyzer{
 	Doc:      doc,
 	Run:      run,
 	Requires: []*analysis.Analyzer{},
+}
+
+var argsort bool
+
+func init() {
+	Analyzer.Flags.BoolVar(&argsort, "sort", false, "sort results by the lcom4 value(increasing order)")
 }
 
 const (
@@ -236,11 +243,27 @@ func run(pass *analysis.Pass) (interface{}, error) {
 	fillNeighbor(graphs, pass)
 	cmaps := collectComments(pass)
 
+	type data struct {
+		obj        types.Object
+		g          graph
+		components [][]graphNode
+	}
+	arr := []data{}
 	for obj, g := range graphs {
 		components := computeConnectedComponents(g)
 		if len(components) > 1 && !hasIgnoreComment(obj, pass.Fset, cmaps) {
-			pass.Reportf(obj.Pos(), fmt.Sprintf(reportmsg, obj.Id(), len(components), components))
+			arr = append(arr, data{obj, g, components})
 		}
+	}
+
+	if argsort {
+		sort.Slice(arr, func(i, j int) bool {
+			return len(arr[i].components) < len(arr[j].components)
+		})
+	}
+
+	for _, d := range arr {
+		pass.Reportf(d.obj.Pos(), fmt.Sprintf(reportmsg, d.obj.Id(), len(d.components), d.components))
 	}
 
 	return nil, nil
