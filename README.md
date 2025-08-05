@@ -1,5 +1,30 @@
 # LCOM4go
-LCOM4go is a tool to compute LCOM4, Lack of Cohesion of Methods metrics ver.4, for golang projects.
+> LCOM4go is a tool to compute LCOM4, Lack of Cohesion of Methods metrics ver.4, for golang projects.
+
+**⚠️ This project is archived and no longer maintained.**
+
+---
+
+## 📌 Notice
+
+This project has been **archived** as of August 2025.  
+We no longer maintain it.
+
+### Why?
+
+LCOM4go was created to measure code readability using the LCOM4 (Lack of Cohesion of Methods) metric.  
+However, as **AI-based code generation becomes the standard**, traditional readability metrics have become less meaningful.
+
+Instead, we are shifting our focus toward:
+
+- **AI-friendliness** – Is the code easy for LLMs to understand and modify?
+- **Prompt-based regeneration** – Can the code be reliably edited via prompts?
+- **Next-gen maintainability** – Beyond cohesion, toward metrics like “promptability” or “regenerability”
+
+In a world where code is generated, not written by hand,  
+**maintainability must also evolve.**
+
+---
 
 # Install
 ```
